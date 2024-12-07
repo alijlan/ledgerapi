@@ -1,0 +1,100 @@
+{
+ "meta": {
+  "creator": "cds-dk 8.4.0"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "API_LEDGER_SRV": {
+   "kind": "service",
+   "@cds.external": true,
+   "@m.IsDefaultEntityContainer": "true",
+   "@sap.message.scope.supported": "true",
+   "@sap.supported.formats": "atom json xlsx"
+  },
+  "API_LEDGER_SRV.A_Ledger": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "@sap.label": "Ledger",
+   "elements": {
+    "Ledger": {
+     "key": true,
+     "type": "cds.String",
+     "length": 2,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Ledger",
+     "@sap.quickinfo": "Ledger in General Ledger Accounting",
+     "notNull": true
+    },
+    "IsLeadingLedger": {
+     "type": "cds.Boolean",
+     "@sap.label": "Leading Ledger",
+     "@sap.quickinfo": "Indicator: Leading Ledger"
+    },
+    "LedgerApplication": {
+     "type": "cds.String",
+     "length": 2,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Application",
+     "@sap.quickinfo": "Owner application"
+    },
+    "LedgerSubApplication": {
+     "type": "cds.String",
+     "length": 3,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Subapplication"
+    },
+    "to_Text": {
+     "type": "cds.Association",
+     "target": "API_LEDGER_SRV.A_LedgerText",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    }
+   }
+  },
+  "API_LEDGER_SRV.A_LedgerText": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "@sap.label": "Ledger Text",
+   "elements": {
+    "Ledger": {
+     "key": true,
+     "type": "cds.String",
+     "length": 2,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Ledger",
+     "@sap.quickinfo": "Ledger in General Ledger Accounting",
+     "notNull": true
+    },
+    "Language": {
+     "key": true,
+     "type": "cds.String",
+     "length": 2,
+     "@sap.label": "Language Key",
+     "notNull": true
+    },
+    "LedgerName": {
+     "type": "cds.String",
+     "length": 30,
+     "@sap.label": "Ledger Name"
+    },
+    "to_Ledger": {
+     "type": "cds.Association",
+     "target": "API_LEDGER_SRV.A_Ledger",
+     "keys": []
+    }
+   }
+  }
+ }
+}
